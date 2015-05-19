@@ -32,7 +32,7 @@ std::ostream&	operator<<(std::ostream& os, KBool* obj)
     return os;
 }
 
-std::ostream&	operator<<(std::ostream& os, KObject* const obj)
+std::ostream&	operator<<(std::ostream& os, KObject* obj)
 {
 	if (obj->getInteger())
 		os << obj->getInteger();

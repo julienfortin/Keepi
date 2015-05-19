@@ -16,8 +16,8 @@
 "true"					{ yylval.obj = new KObject(true); return TRUE; }
 "false"					{ yylval.obj = new KObject(false); return FALSE; }
 
-"&&"					{ std::cout<< "AND\n"; return AND; }
-"||"					{ std::cout<< "OR\n"; return OR; }
+"&&"					{ return AND; }
+"||"					{ return OR; }
 
 ","						{ return COMMA; }
 

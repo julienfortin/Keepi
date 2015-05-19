@@ -132,14 +132,14 @@ long long int	KInteger::operator/(const KInteger& integer) const
 {
 	if (!integer.getValue())
 		throw KZeroDivisionException(this->getType());
-	return this->getValue() - integer.getValue();
+	return this->getValue() / integer.getValue();
 }
 
 long long int	KInteger::operator/(const KBool& b) const
 {
 	if (!b.getValue())
 		throw KZeroDivisionException(this->getType());
-	return this->getValue() - b.getValue();
+	return this->getValue() / b.getValue();
 }
 
 double	KInteger::operator/(const KDouble& real) const

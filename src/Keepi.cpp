@@ -7,10 +7,12 @@
 
 #include	<cstdlib>
 #include	"Keepi.hpp"
+#include	"KTypes.hpp"
 
 Keepi::Keepi(bool debug)
 {
 	this->__init(debug);
+	this->__prompt();
 }
 
 Keepi::~Keepi() 
@@ -24,6 +26,18 @@ void	Keepi::__init(bool debug)
 	this->__symtable = new KSymtable();
 }
 
+void	Keepi::__prompt(void) const
+{
+	std::cout << ">>> ";
+}
+
+void	Keepi::result(KObject* result) const
+{
+	if (result)
+		std::cout << "" << result << std::endl;
+	this->__prompt();
+}
+
 void	Keepi::dsymtab() const { this->__symtable->print(); }
 
 void	Keepi::assign(const std::string& key, KObject* value) const
@@ -31,7 +45,7 @@ void	Keepi::assign(const std::string& key, KObject* value) const
 	this->__symtable->add(key, value);
 }
 
-void	Keepi::_exit() 
+void	Keepi::_exit(void) 
 {
 	delete this->__symtable;
 	exit(EXIT_SUCCESS);

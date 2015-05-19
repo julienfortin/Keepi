@@ -20,6 +20,7 @@ private:
 	KSymtable*	__symtable;
 
 	void		__init(bool);
+	void 		__prompt(void) const;
 
 protected:
 public:
@@ -28,7 +29,10 @@ public:
 
 	void	assign(const std::string&, KObject*) const;
 	void	dsymtab() const;
-	void	_exit() ;
+
+	void	result(KObject*) const;
+
+	void	_exit(void) ;
 };
 
 #endif /* __KEEPI_HPP__ */

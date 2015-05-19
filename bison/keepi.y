@@ -88,7 +88,7 @@ T : T '*' F 	{ $$ = KObject::mul($1, $3); }
   | F
   ;
 
-F : '(' E ')' 	{ $$ = $2; }
+F : '(' B ')' 	{ $$ = $2; }
   | '-' F 		{ $$ = KObject::neg($2); }
   | INTEGER		{ $$ = $1; }
   | REAL		{ $$ = $1; }
@@ -101,6 +101,13 @@ boolean : TRUE { $$ = $1; }
 	;
 
 %%
+
+/*
+
+Todo mode interpretor live: ./Keepi (+prompt+reponse a chaque input comme python);
+ or mode input from file: ./Keepi file.kp
+
+*/
 
 int		main(int ac, const char* av[])
 {
