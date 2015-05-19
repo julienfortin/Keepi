@@ -8,15 +8,17 @@
 CPP	 		:= g++
 NAME		:= keepi
 
+TARGET		:= ./bin
+
 RM			:= rm -rf
 
 FLEX 		:= ./flex
 BISON 		:= ./bison
 
-CPPFLAGS	+= -I ./bison/ -I./includes/
+CPPFLAGS	+= -I$(BISON) -I./include/
 CPPFLAGS	+= -g
 
-SRCS_DIR	:= ./sources
+SRCS_DIR	:= ./src
 
 SRCS		:= 	$(SRCS_DIR)/Keepi.cpp \
 				$(SRCS_DIR)/KSymtable.cpp \
@@ -35,7 +37,7 @@ all: $(NAME)
 
 $(NAME): _bison _flex
 	$(CPP) $(CPPFLAGS) -c $(FLEX)/lex.yy.c -o $(FLEX)/lex.yy.o
-	$(CPP) $(CPPFLAGS) $(FLEX)/lex.yy.o $(BISON)/$(NAME).tab.c $(SRCS) -o $(NAME)
+	$(CPP) $(CPPFLAGS) $(FLEX)/lex.yy.o $(BISON)/$(NAME).tab.c $(SRCS) -o $(TARGET)/$(NAME)
 
 _flex: _bison
 	make -C $(FLEX)
@@ -44,9 +46,11 @@ _bison:
 	make -C $(BISON)
 
 clean: 
-	$(RM) $(NAME)
-	$(RM) ./keepi.dSYM
+	$(RM) $(TARGET)/keepi.dSYM
 	make -C $(FLEX) clean
 	make -C $(BISON) clean
 
-re: clean all
+fclean: clean
+	$(RM) $(TARGET)/$(NAME)
+
+re: fclean all
